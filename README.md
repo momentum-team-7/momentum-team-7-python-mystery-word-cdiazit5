@@ -1,6 +1,6 @@
 # Word Frequency
 
-## Directions
+## Directions (6,7,9 in the notes)
 
 In this project, you will use `open` to read in a text file and calculate the frequency of words in that file.
 

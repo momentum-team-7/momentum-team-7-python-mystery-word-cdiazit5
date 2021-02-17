@@ -6,8 +6,46 @@ STOP_WORDS = [
 
 
 def print_word_freq(file):
+    text_counter = {}
     """Read in `file` and print out the frequency of words in that file."""
-    pass
+    # -open file and save it to a variable
+        # could you split this up at each space? yes
+    with open(file) as open_file:
+        text = open_file.read()
+        text = text.lower()
+        text_list = text.split()
+        text_list_dup = text_list.copy()
+
+        read_file = open_file.read() 
+
+        punctuations = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
+        for element in text:
+            if element in punctuations:
+                text = text.replace(element,"")
+                text = text.replace("\n"," ")
+            
+        for word in text_list:
+            if word in STOP_WORDS:
+                text_list_dup.remove(word)
+            elif word not in text_counter:
+                unsorted_count = text_list_dup.count(word)
+                text_counter[word] = unsorted_count
+
+
+
+
+
+
+    print('read file', read_file)
+
+    # -remove puncuation (jupt note 7)
+    # -normalize all words to lowercase
+    # -remove stop words -- words used so frequently they are ignored
+        # check each word and see if it is equal to one of the stop words/if its in the list
+        # conditional with if
+    # -go through the file word by word and keep a count of how often each word is used
+    # probably use a dictionry to store this, for counting purposes: keys -> words, values -> # of occurerences
+    # pass
 
 
 if __name__ == "__main__":
