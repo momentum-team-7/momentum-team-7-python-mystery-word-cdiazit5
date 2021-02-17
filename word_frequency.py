@@ -6,17 +6,15 @@ STOP_WORDS = [
 
 
 def print_word_freq(file):
+    # """Read in `file` and print out the frequency of words in that file."""
     text_counter = {}
-    """Read in `file` and print out the frequency of words in that file."""
-    # -open file and save it to a variable
-        # could you split this up at each space? yes
     with open(file) as open_file:
         text = open_file.read()
         text = text.lower()
         text_list = text.split()
         text_list_dup = text_list.copy()
 
-        read_file = open_file.read() 
+        # read_file = open_file.read() 
 
         punctuations = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
         for element in text:
@@ -28,15 +26,30 @@ def print_word_freq(file):
             if word in STOP_WORDS:
                 text_list_dup.remove(word)
             elif word not in text_counter:
-                unsorted_count = text_list_dup.count(word)
-                text_counter[word] = unsorted_count
+                unsorted_counter = text_list_dup.count(word)
+                text_counter[word] = unsorted_counter
+
+        sorted_counter = sorted(text_counter.values(), reverse =True)
+        # print(sorted_counter)
+        sorted_dictionary = {}
+        for index in sorted_counter:
+            for key in text_counter.keys():
+                if sorted_dictionary[key] == index:
+                    sorted_dictionary[key] = text_counter[key]
+        
+        for key in sorted_dictionary:
+            print(key," | ", sorted_dictionary[key])
+        
+        print(sorted_dictionary)
+        print(text_list_dup)
 
 
 
 
 
 
-    print('read file', read_file)
+
+    # print('read file', read_file)
 
     # -remove puncuation (jupt note 7)
     # -normalize all words to lowercase
